@@ -1,26 +1,102 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Design tokens from the Figma "Style Guide" page.
+ * Every variable here becomes a Tailwind utility, e.g.
+ *   --color-primary-600  -> bg-primary-600, text-primary-600, border-primary-600
+ *   --text-heading-l     -> text-heading-l (size + line-height together)
+ */
+@theme {
+  /* Primary – "Persian Blue" */
+  --color-primary-50: #e7f6ff;
+  --color-primary-100: #d3eeff;
+  --color-primary-200: #b0ddff;
+  --color-primary-300: #81c5ff;
+  --color-primary-400: #4f9dff;
+  --color-primary-500: #2872ff;
+  --color-primary-600: #0445ff;
+  --color-primary-700: #0043ff;
+  --color-primary-800: #003be2;
+  --color-primary-900: #0b36a4;
+  --color-primary-950: #071e5f;
+
+  /* Secondary – "Electric Lime" */
+  --color-secondary-50: #fdffe4;
+  --color-secondary-100: #faffc5;
+  --color-secondary-200: #f2ff92;
+  --color-secondary-300: #e4ff54;
+  --color-secondary-400: #d4fb20;
+  --color-secondary-500: #cbfc01;
+  --color-secondary-600: #8cb400;
+  --color-secondary-700: #6a8902;
+  --color-secondary-800: #546b09;
+  --color-secondary-900: #465a0d;
+  --color-secondary-950: #243300;
+
+  /* Neutral – "Shuttle Gray" (replaces Tailwind's default neutral scale) */
+  --color-neutral-50: #f5f5f6;
+  --color-neutral-100: #e5e6e8;
+  --color-neutral-200: #ced0d3;
+  --color-neutral-300: #abaeb5;
+  --color-neutral-400: #82868e;
+  --color-neutral-500: #666973;
+  --color-neutral-600: #585a62;
+  --color-neutral-700: #4b4c53;
+  --color-neutral-800: #424348;
+  --color-neutral-900: #3a3b3f;
+  --color-neutral-950: #242528;
+
+  /* Typography – headings (Poppins SemiBold, line-height 120%) */
+  --text-heading-l: 4.5rem; /* 72px */
+  --text-heading-l--line-height: 1.2;
+  --text-heading-m: 2.75rem; /* 44px */
+  --text-heading-m--line-height: 1.2;
+  --text-heading-s: 2.25rem; /* 36px */
+  --text-heading-s--line-height: 1.2;
+  --text-heading-xs: 1.25rem; /* 20px */
+  --text-heading-xs--line-height: 1.2;
+
+  /* Typography – body copy (Satoshi, line-height 160%) */
+  --text-body-l: 1.125rem; /* 18px */
+  --text-body-l--line-height: 1.6;
+  --text-body-m: 1rem; /* 16px */
+  --text-body-m--line-height: 1.6;
+  --text-body-s: 0.875rem; /* 14px */
+  --text-body-s--line-height: 1.6;
+  --text-body-xs: 0.75rem; /* 12px */
+  --text-body-xs--line-height: 1.6;
+
+  /* Typography – labels, buttons, tags (Satoshi, line-height 120%) */
+  --text-label-xl: 1.25rem; /* 20px */
+  --text-label-xl--line-height: 1.2;
+  --text-label-l: 1.125rem; /* 18px */
+  --text-label-l--line-height: 1.2;
+  --text-label-m: 1rem; /* 16px */
+  --text-label-m--line-height: 1.2;
+  --text-label-s: 0.875rem; /* 14px */
+  --text-label-s--line-height: 1.2;
+  --text-label-xs: 0.75rem; /* 12px */
+  --text-label-xs--line-height: 1.2;
 }
 
+/*
+ * Fonts come from next/font as CSS variables set on <html> (see layout.tsx).
+ * "inline" makes the utilities reference those variables directly.
+ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-white font-sans text-neutral-950 antialiased;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading font-semibold;
+  }
 }
