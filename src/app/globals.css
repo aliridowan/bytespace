@@ -77,6 +77,9 @@
   --text-label-s--line-height: 1.2;
   --text-label-xs: 0.75rem; /* 12px */
   --text-label-xs--line-height: 1.2;
+
+  /* Layout – content width from the Figma layout grid (1440 − 2 × 120px margin) */
+  --container-content: 75rem; /* 1200px */
 }
 
 /*
