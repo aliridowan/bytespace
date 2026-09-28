@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import localFont from "next/font/local";
+import { Navbar } from "@/components/sections/Navbar";
 import "./globals.css";
 
 // Headings: Poppins (Google Fonts, not a variable font, so weights are listed)
@@ -27,8 +28,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${poppins.variable} ${satoshi.variable}`}>
-      <body>{children}</body>
+    // motion-safe:scroll-smooth – smooth scrolling to #sections, skipped for "reduce motion" users.
+    // data-scroll-behavior="smooth" – Next.js 16: turn smooth scrolling off during page
+    //   navigations, so a new page starts at the top without an animated scroll.
+    // scroll-pt-* – leave room for the fixed navbar when jumping to a section, so its top
+    //   isn't hidden under the header. Uses the scrolled height (64px mobile, 80px desktop)
+    //   because the header has already shrunk by the time the section is reached.
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${poppins.variable} ${satoshi.variable} scroll-pt-16 motion-safe:scroll-smooth md:scroll-pt-20`}
+    >
+      <body>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
