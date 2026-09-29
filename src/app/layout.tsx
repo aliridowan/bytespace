@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import localFont from "next/font/local";
-import { Navbar } from "@/components/sections/Navbar";
+import { Navbar } from "@/components/sections/navbar/Navbar";
 import "./globals.css";
 
 // Headings: Poppins (Google Fonts, not a variable font, so weights are listed)
