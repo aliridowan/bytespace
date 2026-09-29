@@ -1,3 +1,4 @@
+import { Courses } from "@/components/sections/courses/Courses";
 import { Hero } from "@/components/sections/hero/Hero";
 import { Partners } from "@/components/sections/partners/Partners";
 
@@ -10,13 +11,7 @@ export default function Home() {
     <main>
       <Hero />
       <Partners />
-
-      <section
-        id="courses"
-        className="flex min-h-screen items-center justify-center bg-white"
-      >
-        <p className="text-heading-s">Discover Your Passion (placeholder)</p>
-      </section>
+      <Courses />
 
       <section
         id="creators"
