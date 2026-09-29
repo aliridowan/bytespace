@@ -6,7 +6,7 @@ import { LearningPaths } from "@/components/sections/learning-paths/LearningPath
 import { Partners } from "@/components/sections/partners/Partners";
 import { Testimonials } from "@/components/sections/testimonials/Testimonials";
 
-// Landing page, sections in Figma order. The navbar (app/layout.tsx) scrolls to the
+// Landing page, sections in Figma order. The navbar (app/(site)/layout.tsx) scrolls to the
 // sections with the ids "home", "courses" and "creators".
 
 export default function Home() {
