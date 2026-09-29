@@ -9,7 +9,7 @@ type HappyStudentsCardProps = {
 };
 
 // "Happy Students" card with a rating and a row of faces (Hero, Create & Manage Courses).
-// Figma: 258px wide, the rating differs per section (4.5 in the Hero, 4.8 lower down).
+// Figma: 258px wide; the rating and review count come from the caller.
 export function HappyStudentsCard({ rating, reviews, className = "" }: HappyStudentsCardProps) {
   return (
     <FloatingCard className={`w-[258px] ${className}`}>
