@@ -91,6 +91,18 @@
   --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 }
 
+/*
+ * Grid-line background used by the Hero and CTA sections.
+ * Figma: 2px white lines every 120px at 12% opacity, drawn with two gradients
+ * (vertical lines + horizontal lines) instead of an image.
+ */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.12) 2px, transparent 2px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.12) 2px, transparent 2px);
+  background-size: 120px 120px;
+}
+
 @layer base {
   body {
     @apply bg-white font-sans text-neutral-950 antialiased;
