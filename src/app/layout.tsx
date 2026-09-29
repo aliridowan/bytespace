@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import localFont from "next/font/local";
-import { Navbar } from "@/components/sections/navbar/Navbar";
 import "./globals.css";
 
 // Headings: Poppins (Google Fonts, not a variable font, so weights are listed)
@@ -39,10 +38,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-scroll-behavior="smooth"
       className={`${poppins.variable} ${satoshi.variable} scroll-pt-16 motion-safe:scroll-smooth md:scroll-pt-20`}
     >
-      <body>
-        <Navbar />
-        {children}
-      </body>
+      {/* Navbar and footer come from the route group layouts: (site) has the full ones,
+          (auth) only a logo bar. */}
+      <body>{children}</body>
     </html>
   );
 }
