@@ -1,5 +1,6 @@
 import { Courses } from "@/components/sections/courses/Courses";
 import { Hero } from "@/components/sections/hero/Hero";
+import { LearningPaths } from "@/components/sections/learning-paths/LearningPaths";
 import { Partners } from "@/components/sections/partners/Partners";
 
 // Landing page. Sections are added one by one; each remaining placeholder has the id the navbar
@@ -12,6 +13,7 @@ export default function Home() {
       <Hero />
       <Partners />
       <Courses />
+      <LearningPaths />
 
       <section
         id="creators"
