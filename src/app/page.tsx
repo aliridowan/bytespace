@@ -1,4 +1,5 @@
 import { Courses } from "@/components/sections/courses/Courses";
+import { Growth } from "@/components/sections/growth/Growth";
 import { Hero } from "@/components/sections/hero/Hero";
 import { LearningPaths } from "@/components/sections/learning-paths/LearningPaths";
 import { Partners } from "@/components/sections/partners/Partners";
@@ -14,6 +15,7 @@ export default function Home() {
       <Partners />
       <Courses />
       <LearningPaths />
+      <Growth />
 
       <section
         id="creators"
