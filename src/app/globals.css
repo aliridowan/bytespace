@@ -56,6 +56,10 @@
   --text-heading-xs: 1.25rem; /* 20px */
   --text-heading-xs--line-height: 1.2;
 
+  /* Typography – display (Poppins Medium) — big stat numbers like "12K" */
+  --text-display-xs: 2.25rem; /* 36px */
+  --text-display-xs--line-height: 2.75rem; /* 44px */
+
   /* Typography – body copy (Satoshi, line-height 160%) */
   --text-body-l: 1.125rem; /* 18px */
   --text-body-l--line-height: 1.6;
