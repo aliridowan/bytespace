@@ -35,6 +35,8 @@ export function Hero() {
         width={1440}
         height={804}
         sizes="1440px"
+        // On desktop this is the largest image in view (the LCP), so don't lazy-load it
+        loading="eager"
         className="pointer-events-none absolute top-[221px] left-1/2 hidden w-[1440px] max-w-none -translate-x-1/2 md:block"
       />
     </section>
