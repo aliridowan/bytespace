@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import localFont from "next/font/local";
+import { Toaster } from "sonner";
 import "./globals.css";
 
-// Headings: Poppins (Google Fonts, not a variable font, so weights are listed)
+// Headings: Poppins Fonts
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
@@ -11,7 +12,7 @@ const poppins = Poppins({
   display: "swap",
 });
 
-// Body: Satoshi (Fontshare, self-hosted variable font covering 300–900)
+// Body: Satoshi Fonts
 const satoshi = localFont({
   src: "./fonts/Satoshi-Variable.woff2",
   weight: "300 900",
@@ -27,20 +28,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    // motion-safe:scroll-smooth – smooth scrolling to #sections, skipped for "reduce motion" users.
-    // data-scroll-behavior="smooth" – Next.js 16: turn smooth scrolling off during page
-    //   navigations, so a new page starts at the top without an animated scroll.
-    // scroll-pt-* – leave room for the fixed navbar when jumping to a section, so its top
-    //   isn't hidden under the header. Uses the scrolled height (64px mobile, 80px desktop)
-    //   because the header has already shrunk by the time the section is reached.
     <html
       lang="en"
       data-scroll-behavior="smooth"
       className={`${poppins.variable} ${satoshi.variable} scroll-pt-16 motion-safe:scroll-smooth md:scroll-pt-20`}
     >
-      {/* Navbar and footer come from the route group layouts: (site) has the full ones,
-          (auth) only a logo bar. */}
-      <body>{children}</body>
+      <body>
+        {children}
+        <Toaster position="bottom-right" />
+      </body>
     </html>
   );
 }
