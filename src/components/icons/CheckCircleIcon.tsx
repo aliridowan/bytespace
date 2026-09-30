@@ -1,10 +1,7 @@
-// Filled circle with a white tick (24×24) for feature lists. The circle takes the
-// parent's text colour through fill="currentColor".
 export function CheckCircleIcon(props: React.ComponentProps<"svg">) {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <circle cx="12" cy="12" r="10" fill="currentColor" />
-      <path d="M7.5 12.5l3 3 6-6.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <svg width="24" height="24" viewBox="-2 -2 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM8 15L3 10L4.41 8.59L8 12.17L15.59 4.58L17 6L8 15Z" />
     </svg>
   );
 }
