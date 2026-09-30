@@ -22,6 +22,6 @@ export const sectionIds = mainLinks.map((link) => link.sectionId);
 
 // Right-hand account links. The pages come later (bonus task).
 export const authLinks: NavLink[] = [
-  { label: "Sign In", href: "/login" },
-  { label: "Join Us", href: "/register" },
+  { label: "Sign In", href: "/sign-in" },
+  { label: "Join Us", href: "/sign-up" },
 ];
