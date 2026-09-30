@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { CourseCard } from "@/components/ui/CourseCard";
-import { FEATURED, courseCategories, courses } from "@/data/courses";
+import { FEATURED, courseCategoryRows, courses } from "@/data/courses";
 
 // Figma chip: 12px/16px padding, fully rounded, Label M.
 // Active = Electric Lime/400, others = Shuttle Gray/50 with Shuttle Gray/700 text.
@@ -25,35 +25,46 @@ export function CourseBrowser() {
 
   return (
     <>
-      {/* Phones: one row that scrolls sideways (18 chips would be ~8 rows).
-          From md: wrapped and centred like Figma (16px apart, 20px between rows).
-          The negative margin lets the row scroll to the screen edge past the Container padding. */}
-      <ul
+      {/* Phones: one line that scrolls sideways (18 chips would be ~8 rows); the negative
+          margin lets it scroll to the screen edge past the Container padding.
+          768–1279px: all chips wrap and are centred (16px apart, 20px between rows).
+          From 1280px: Figma's three rows, one under the other.
+          Below 1280px each row's <ul> is "display: contents", so its chips join the one
+          scrolling/wrapping line; from 1280px (xl:flex) each <ul> is a row again. */}
+      <div
+        role="group"
         aria-label="Filter courses by category"
-        className="-mx-4 mt-10 flex gap-4 overflow-x-auto px-4 [scrollbar-width:none] sm:-mx-6 sm:px-6 md:mx-0 md:flex-wrap md:justify-center md:gap-y-5 md:overflow-visible md:px-0"
+        className="-mx-4 mt-10 flex gap-4 overflow-x-auto px-4 [scrollbar-width:none] sm:-mx-6 sm:px-6 md:mx-0 md:flex-wrap md:justify-center md:gap-y-5 md:overflow-visible md:px-0 xl:flex-col xl:items-center"
       >
-        {courseCategories.map((category) => {
-          const isActive = category === activeCategory;
-          return (
-            <li key={category} className="shrink-0">
-              {/* aria-pressed: a toggle button, so screen readers say which filter is on */}
-              <button
-                type="button"
-                aria-pressed={isActive}
-                onClick={() => setActiveCategory(category)}
-                className={`${chipStyles} ${isActive ? activeChipStyles : inactiveChipStyles}`}
-              >
-                {category}
-              </button>
-            </li>
-          );
-        })}
-        <li className="flex shrink-0 items-center">
-          <Link href="/search" className="text-label-m font-medium whitespace-nowrap text-primary-600 hover:underline">
-            + More
-          </Link>
-        </li>
-      </ul>
+        {courseCategoryRows.map((row, rowIndex) => (
+          <ul key={row[0]} className="contents xl:flex xl:gap-4">
+            {row.map((category) => {
+              const isActive = category === activeCategory;
+              return (
+                <li key={category} className="shrink-0">
+                  {/* aria-pressed: a toggle button, so screen readers say which filter is on */}
+                  <button
+                    type="button"
+                    aria-pressed={isActive}
+                    onClick={() => setActiveCategory(category)}
+                    className={`${chipStyles} ${isActive ? activeChipStyles : inactiveChipStyles}`}
+                  >
+                    {category}
+                  </button>
+                </li>
+              );
+            })}
+            {/* "+ More" closes the last row, as in Figma */}
+            {rowIndex === courseCategoryRows.length - 1 && (
+              <li className="flex shrink-0 items-center">
+                <Link href="/search" className="text-label-m font-medium whitespace-nowrap text-primary-600 hover:underline">
+                  + More
+                </Link>
+              </li>
+            )}
+          </ul>
+        ))}
+      </div>
 
       {/* Announces the result after a filter change without moving focus */}
       <p aria-live="polite" className="sr-only">

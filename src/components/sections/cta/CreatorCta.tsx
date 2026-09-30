@@ -44,7 +44,7 @@ export function CreatorCta() {
           international creators. Utilize our Course Editor, and showcase your expertise by
           publishing your finest course on the ByteSpace Course Library.
         </p>
-        <Button href="/register">Join as Creator</Button>
+        <Button href="/sign-up">Join as Creator</Button>
       </Container>
     </section>
   );

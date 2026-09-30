@@ -21,25 +21,12 @@ export type Course = {
 // "Featured" is the default and shows every course.
 export const FEATURED = "Featured";
 
-export const courseCategories = [
-  FEATURED,
-  "Music",
-  "Drawing & Painting",
-  "Marketing",
-  "Animation",
-  "Social Media",
-  "UI/UX Design",
-  "Creative Marketing",
-  "Digital Illustration",
-  "Film & Video",
-  "Crafts",
-  "Freelance & Entrepreneurship",
-  "Graphic Design",
-  "Photography",
-  "Productivity",
-  "Web Development",
-  "Data Science",
-  "Cooking",
+// Split into Figma's three rows (1086px, 952px and 622px wide with "+ More"). From 1280px
+// the chips are shown in exactly these rows; on smaller screens they simply wrap or scroll.
+export const courseCategoryRows = [
+  [FEATURED, "Music", "Drawing & Painting", "Marketing", "Animation", "Social Media", "UI/UX Design", "Creative Marketing"],
+  ["Digital Illustration", "Film & Video", "Crafts", "Freelance & Entrepreneurship", "Graphic Design", "Photography"],
+  ["Productivity", "Web Development", "Data Science", "Cooking"],
 ];
 
 // Same four faces on every card in the design. alt="" because the "26+" count says

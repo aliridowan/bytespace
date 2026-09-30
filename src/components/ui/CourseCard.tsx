@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { LevelIcon } from "@/components/icons/LevelIcon";
+import { PointedStarIcon } from "@/components/icons/PointedStarIcon";
 import { StarIcon } from "@/components/icons/StarIcon";
 import { AvatarGroup } from "@/components/ui/AvatarGroup";
 import type { Course } from "@/data/courses";
@@ -7,7 +8,19 @@ import type { Course } from "@/data/courses";
 // Figma "Course_Card_1": 373 × 384, white, 1px Shuttle Gray/200 border, 24px radius.
 // Photo inset 16px (341 × 195, 12px radius) with frosted info pills on it,
 // then title/rating, level + students, price, 16px apart.
-export function CourseCard({ course }: { course: Course }) {
+type CourseCardProps = {
+  course: Course;
+  // "auth": the look of the cards on the sign-in pages (Figma): lime pointed rating star
+  // and a black "26+" badge. "default": grey rounded star and lime badge (landing page).
+  variant?: "default" | "auth";
+  // Load the photo right away instead of lazily. Only for cards that are the first big
+  // image on screen (the sign-in pages' collage), where the photo is the page's LCP.
+  eager?: boolean;
+};
+
+export function CourseCard({ course, variant = "default", eager = false }: CourseCardProps) {
+  const isAuth = variant === "auth";
+
   const pills = [
     { label: `${course.lessons} Lessons` },
     { label: course.duration },
@@ -27,6 +40,7 @@ export function CourseCard({ course }: { course: Course }) {
           src={course.image}
           alt=""
           fill
+          loading={eager ? "eager" : "lazy"}
           sizes="(min-width: 1280px) 341px, (min-width: 640px) 45vw, 100vw"
           className="object-cover"
         />
@@ -57,7 +71,11 @@ export function CourseCard({ course }: { course: Course }) {
           <p className="flex shrink-0 items-center gap-1 text-body-l text-neutral-700">
             <span className="sr-only">Rating:</span>
             {course.rating}
-            <StarIcon className="text-neutral-300" />
+            {isAuth ? (
+              <PointedStarIcon className="text-secondary-400" />
+            ) : (
+              <StarIcon className="text-neutral-200" />
+            )}
           </p>
         </div>
 
@@ -66,7 +84,7 @@ export function CourseCard({ course }: { course: Course }) {
             <LevelIcon />
             {course.level}
           </span>
-          <AvatarGroup avatars={course.students} more={course.moreStudents} />
+          <AvatarGroup avatars={course.students} more={course.moreStudents} moreTone={isAuth ? "dark" : "lime"} />
         </div>
 
         <p>

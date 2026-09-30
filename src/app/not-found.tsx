@@ -8,20 +8,11 @@ export const metadata: Metadata = {
   title: "Page not found – ByteSpace",
 };
 
-// Figma "404 Not Found": lime gradient "404" text fading out towards the bottom
-// (#D4FB20 at 100% → 96% → 81% → 61% → transparent).
 const numberGradient = {
   backgroundImage:
     "linear-gradient(to bottom, #d4fb20 0%, rgb(212 251 32 / 0.96) 25%, rgb(212 251 32 / 0.81) 50%, rgb(212 251 32 / 0.61) 75%, rgb(255 255 255 / 0) 100%)",
 };
 
-// The root not-found page: Next.js shows it for every URL that has no route (e.g. /login)
-// and when a page calls notFound(). It renders inside the root layout only (not the (site)
-// group layout), so it adds the navbar and footer itself.
-//
-// Figma: blue section with the 120px grid (1440 × 957). "404" is Poppins SemiBold 480px
-// starting 160px from the top; the title overlaps its lower 119px, then text and button
-// 32px apart, 125px from the bottom.
 export default function NotFound() {
   return (
     <>
@@ -29,10 +20,6 @@ export default function NotFound() {
       <main>
         <section className="overflow-hidden bg-primary-800 bg-grid pt-32 pb-20 lg:pt-40 lg:pb-[125px]">
           <Container className="flex flex-col items-center gap-8 text-center">
-            {/* Decorative: the heading below says what happened. 480px at 1440 (33.3vw), never
-                below 128px. The heading overlaps the number's lower 119px = 0.248em, so the margin
-                is -(0.248em + the 32px flex gap): the overlap stays in proportion at every size.
-                bg-clip-text paints the gradient into the letters. */}
             <p
               aria-hidden="true"
               style={numberGradient}
